@@ -1,4 +1,3 @@
-//your JS code here. If required.
 // Get the modal element
 const modal = document.getElementById('myModal');
 
@@ -10,18 +9,19 @@ const closeBtn = document.querySelector('.close-modal');
 
 // --- Functions to control the modal ---
 
-// 1. Open the modal
+// 1. Open the modal when the button is clicked
 openBtn.onclick = function() {
     modal.style.display = 'block';
 }
 
-// 2. Close the modal when 'x' is clicked
+// 2. Close the modal when the 'x' button is clicked
 closeBtn.onclick = function() {
     modal.style.display = 'none';
 }
 
-// 3. Close the modal when the user clicks anywhere outside of the modal content
+// 3. Close the modal when the user clicks anywhere outside of the modal content (the background)
 window.onclick = function(event) {
+    // Check if the element clicked is the modal background itself
     if (event.target === modal) {
         modal.style.display = 'none';
     }
