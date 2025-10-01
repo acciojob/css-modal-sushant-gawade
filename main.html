@@ -12,7 +12,6 @@
       --shadow: 0 10px 30px rgba(2,6,23,0.3);
     }
 
-    /* page layout */
     body{
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       min-height:100vh;
@@ -38,25 +37,19 @@
     /* modal backdrop */
     .modal{
       position:fixed;
-      inset:0; /* top:0; right:0; bottom:0; left:0 */
-      display:flex;
+      inset:0;
+      display:none; /* hidden by default */
       align-items:center;
       justify-content:center;
       background: rgba(2,6,23,0.45);
-      opacity:0;
-      pointer-events:none;
-      transition: opacity 220ms ease;
-      -webkit-tap-highlight-color: transparent;
       z-index:1000;
     }
 
     /* show modal */
     .modal.show{
-      opacity:1;
-      pointer-events:auto;
+      display:block;
     }
 
-    /* modal content box */
     .modal-content{
       width:min(92%,560px);
       background:var(--card);
@@ -107,7 +100,6 @@
       color:#111827;
     }
 
-    /* small responsive tweak */
     @media (max-width:420px){
       .modal-content{border-radius:10px;}
       #openModal{padding:10px 14px;font-size:15px}
@@ -117,7 +109,6 @@
 <body>
   <button id="openModal">Open Modal</button>
 
-  <!-- Modal structure required by the task -->
   <div class="modal" id="myModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal-content" role="document">
       <div class="modal-header">
@@ -140,7 +131,6 @@
       function openModal(){
         modal.classList.add('show');
         modal.setAttribute('aria-hidden','false');
-        // move focus into modal for accessibility
         closeBtn.focus();
       }
 
@@ -153,19 +143,16 @@
       openBtn.addEventListener('click', openModal);
       closeBtn.addEventListener('click', closeModal);
 
-      // close when clicking outside modal-content
       modal.addEventListener('click', (e)=>{
         if(e.target === modal) closeModal();
       });
 
-      // close on Escape
       document.addEventListener('keydown', (e)=>{
         if(e.key === 'Escape' && modal.classList.contains('show')){
           closeModal();
         }
       });
 
-      // Prevent clicks inside the content from closing
       modalContent.addEventListener('click', e=>{
         e.stopPropagation();
       });
