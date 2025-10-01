@@ -20,8 +20,9 @@ closeBtn.onclick = function() {
 }
 
 // 3. Close the modal when the user clicks anywhere outside of the modal content (the background)
+// This is the function that the Cypress test is targeting.
 window.onclick = function(event) {
-    // Check if the element clicked is the modal background itself
+    // Check if the element clicked (event.target) is the modal background itself
     if (event.target === modal) {
         modal.style.display = 'none';
     }
